@@ -6,12 +6,13 @@
 # sudo apt-get install python-setuptools
 # sudo easy_install rpi.gpio
 
+from __future__ import print_function
+
 import time
 import os
 import RPi.GPIO as GPIO
 import requests
 
-from __future__ import print_function
 import sys
 
 GPIO.setmode(GPIO.BCM)
