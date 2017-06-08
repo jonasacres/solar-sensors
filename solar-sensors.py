@@ -15,6 +15,7 @@ import requests
 
 import sys
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 def eprint(*args, **kwargs):
