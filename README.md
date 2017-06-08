@@ -42,6 +42,7 @@ pip install requests
 
 cd
 git clone https://github.com/jonasacres/solar-sensors
+echo http://http.keystore.url/solar-sensors > ~/solar-sensors/sensor-unit/http-keystore-url
 cp ~/solar-sensors/sensor-unit/solar-sensors.service /etc/systemd/system
 systemctl start solar-sensors
 systemctl enable solar-sensors.service
@@ -56,6 +57,7 @@ su - solar
 sudo gem install websocket-client-simple sqlite3
 cd
 git clone https://github.com/jonasacres/solar-sensors
+echo http://http.keystore.url/solar-sensors > ~/solar-sensors/log-unit/http-keystore-url
 cp ~/solar-sensors/log-unit/solar-log.service /etc/systemd/system
 systemctl start solar-log
 systemctl enable solar-log.service

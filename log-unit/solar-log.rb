@@ -32,7 +32,7 @@ end
 
 $db_file = "solar.db"
 $db = open_db("solar.db")
-$url = 'http://10.0.1.125:11000/solar-sensors'
+$url = IO.read("http-keystore-url").strip
 $db.execute("select time_inserted_str from solar order by time_inserted_epoch desc limit 1") { |row| $last_update = row[:time_inserted_str] }
 ws = WebSocket::Client::Simple.connect $url
 

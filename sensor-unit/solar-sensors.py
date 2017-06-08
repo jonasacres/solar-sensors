@@ -90,7 +90,7 @@ while True:
     print("")
 
     try:
-        http_keystore_url = "http://10.0.1.125:11000/solar-sensors"
+        http_keystore_url = open("http-keystore-url", "r").readline().strip()
         post_data = {"photo_v":photo_v, "solar_v":solar_v, "solar_power_mw":solar_power_mw}
         requests.post(http_keystore_url, data=json.dumps(post_data))
     except requests.exceptions.ConnectionError as e:
