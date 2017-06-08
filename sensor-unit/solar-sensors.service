@@ -5,9 +5,9 @@ After=network-online.target
 
 [Service]
 PIDFile=/tmp/solar-sensors.pid
-ExecStart=/root/solar-sensors/solar-sensors.py
+ExecStart=/root/solar-sensors/sensor-unit/solar-sensors.py
 Restart=on-failure
-WorkingDirectory=/root/solar-sensors
+WorkingDirectory=/root/solar-sensors/sensor-unit
 User=root
 ProtectSystem=true
 

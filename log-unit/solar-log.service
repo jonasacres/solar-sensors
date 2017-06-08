@@ -1,0 +1,15 @@
+[Unit]
+Description=Solar Sensor Logger
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+PIDFile=/tmp/solar-log.pid
+ExecStart=/home/solar/solar-sensors/log-unit/solar-log.rb
+Restart=on-failure
+WorkingDirectory=/home/solar/solar-sensors/log-unit
+User=root
+ProtectSystem=true
+
+[Install]
+WantedBy=multi-user.target

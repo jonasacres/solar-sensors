@@ -31,6 +31,7 @@ The panel has a 1K resistor on it as a load, and is connected to a MCP3008 ADC, 
 
 # Setup
 
+## Sensor unit
 As root on a raspberry pi running Raspbian:
 
 ```
@@ -41,9 +42,23 @@ pip install requests
 
 cd
 git clone https://github.com/jonasacres/solar-sensors
-cp ~/solar-sensors/solar-sensors.service /etc/systemd/system
+cp ~/solar-sensors/sensor-unit/solar-sensors.service /etc/systemd/system
 systemctl start solar-sensors
 systemctl enable solar-sensors.service
+```
+
+## Log unit
+
+```
+adduser solar
+su - solar
+
+sudo gem install websocket-client-simple sqlite3
+cd
+git clone https://github.com/jonasacres/solar-sensors
+cp ~/solar-sensors/log-unit/solar-log.service /etc/systemd/system
+systemctl start solar-log
+systemctl enable solar-log.service
 ```
 
 # http-keystore data
@@ -52,7 +67,7 @@ Posted to `/solar-sensors`:
 
 key            | value
 -------------- | -----
-photo_mv       | photoresistor voltage
-solar_mv       | solar panel voltage
+photo_v        | photoresistor voltage
+solar_v        | solar panel voltage
 solar_power_mw | solar panel power, milliwatts
 
