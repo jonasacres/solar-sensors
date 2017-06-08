@@ -10,9 +10,15 @@ import time
 import os
 import RPi.GPIO as GPIO
 import requests
- 
+
+from __future__ import print_function
+import sys
+
 GPIO.setmode(GPIO.BCM)
- 
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
 def readadc(adcnum, clockpin, mosipin, misopin, cspin):
     if ((adcnum > 7) or (adcnum < 0)):
@@ -73,12 +79,16 @@ while True:
     solar_resistor_ohms = 1000 # TODO: measure
     solar_power_mw = round(solar_v**2/solar_resistor_ohms, 3)
 
-    http_keystore_url = "http://10.0.1.125:11000/solar-sensors"
-    post_data = {"photo_v":photo_v, "solar_v":solar_v, "solar_power_mw":solar_power_mw}
-    requests.post(http_keystore_url, data=post_data)
+    print("photoresistor: ", photo_v, 3, "V")
+    print("  solar power: ", solar_power_mw, 3, "mW")
+    print("solar voltage: ", solar_v, 3, "V")
 
-    print "photoresistor: ", photo_v, 3, "V"
-    print "  solar power: ", solar_power_mw, 3, "mW"
-    print "solar voltage: ", solar_v, 3, "V"
+    try:
+        http_keystore_url = "http://10.0.1.125:11000/solar-sensors"
+        post_data = {"photo_v":photo_v, "solar_v":solar_v, "solar_power_mw":solar_power_mw}
+        requests.post(http_keystore_url, data=post_data)
+    except requests.exceptions.ConnectionError as e:
+        eprint("Caught error posting to ", http_keystore_url)
+        eprint(e)
 
     time.sleep(5)
