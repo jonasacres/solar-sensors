@@ -78,7 +78,7 @@ while True:
     solar_v = round(scale * readadc(SOLAR_PANEL_CHANNEL, SPICLK, SPIMOSI, SPIMISO, SPICS), 3)
 
     solar_resistor_ohms = 1000 # TODO: measure
-    solar_power_mw = round(solar_v**2/solar_resistor_ohms, 3)
+    solar_power_mw = round(1000*solar_v**2/solar_resistor_ohms, 3)
 
     print("photoresistor:", str(photo_v) + "V")
     print("  solar power:", str(solar_power_mw) + "mW")
