@@ -8,7 +8,7 @@
 
 from __future__ import print_function
 
-import time
+import datetime
 import os
 import RPi.GPIO as GPIO
 import requests
@@ -81,9 +81,11 @@ while True:
     solar_resistor_ohms = 990
     solar_power_mw = round(1000*solar_v**2/solar_resistor_ohms, 3)
 
+    print(str(datetime.datetime.now()).split('.')[0])
     print("photoresistor:", str(photo_v) + "V")
     print("  solar power:", str(solar_power_mw) + "mW")
     print("solar voltage:", str(solar_v) + "V")
+    print("")
 
     try:
         http_keystore_url = "http://10.0.1.125:11000/solar-sensors"
