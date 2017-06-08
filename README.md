@@ -34,6 +34,11 @@ The panel has a 1K resistor on it as a load, and is connected to a MCP3008 ADC, 
 As root on a raspberry pi running Raspbian:
 
 ```
+apt-get update
+apt-get install python-dev python-setuptools
+easy_install rpi.gpio
+pip install requests
+
 cd
 git clone https://github.com/jonasacres/solar-sensors
 cp ~/solar-sensors/solar-sensors.service /etc/systemd/system
