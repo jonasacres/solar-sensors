@@ -5,13 +5,11 @@ After=network-online.target
 
 [Service]
 PIDFile=/tmp/solar-sensors.pid
-ExecStart=/home/solar/solar-sensors/solar-sensors.py
+ExecStart=/root/solar-sensors/solar-sensors.py
 Restart=on-failure
-WorkingDirectory=/home/solar
-User=solar
+WorkingDirectory=/root/solar-sensors
+User=root
 ProtectSystem=true
-NoNewPrivileges=true
 
 [Install]
 WantedBy=multi-user.target
-
