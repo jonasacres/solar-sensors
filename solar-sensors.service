@@ -1,0 +1,17 @@
+[Unit]
+Description=Solar Sensor Monitor
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+PIDFile=/tmp/solar-sensors.pid
+ExecStart=/home/solar/solar-sensors/solar-sensors.py
+Restart=on-failure
+WorkingDirectory=/home/solar
+User=solar
+ProtectSystem=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+
