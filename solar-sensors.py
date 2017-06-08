@@ -8,6 +8,7 @@
 
 from __future__ import print_function
 
+import time
 import datetime
 import os
 import RPi.GPIO as GPIO
