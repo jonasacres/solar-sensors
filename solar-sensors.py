@@ -80,16 +80,15 @@ while True:
     solar_resistor_ohms = 1000 # TODO: measure
     solar_power_mw = round(solar_v**2/solar_resistor_ohms, 3)
 
-    print("photoresistor: ", photo_v, 3, "V")
-    print("  solar power: ", solar_power_mw, 3, "mW")
-    print("solar voltage: ", solar_v, 3, "V")
+    print("photoresistor:", photo_v + "V")
+    print("  solar power:", solar_power_mw + "mW")
+    print("solar voltage:", solar_v + "V")
 
     try:
         http_keystore_url = "http://10.0.1.125:11000/solar-sensors"
         post_data = {"photo_v":photo_v, "solar_v":solar_v, "solar_power_mw":solar_power_mw}
         requests.post(http_keystore_url, data=post_data)
     except requests.exceptions.ConnectionError as e:
-        eprint("Caught error posting to ", http_keystore_url)
-        eprint(e)
+        eprint("Caught error posting to", http_keystore_url + ":", e)
 
     time.sleep(5)
