@@ -49,15 +49,16 @@ systemctl enable solar-sensors.service
 ```
 
 ## Log unit
+As root:
 
 ```
+gem install websocket-client-simple sqlite3
 adduser solar
 su - solar
 
-sudo gem install websocket-client-simple sqlite3
 cd
 git clone https://github.com/jonasacres/solar-sensors
-echo http://http.keystore.url/solar-sensors > ~/solar-sensors/log-unit/http-keystore-url
+echo http://http.keystore.url/solar-sensor > ~/solar-sensors/log-unit/http-keystore-url
 cp ~/solar-sensors/log-unit/solar-log.service /etc/systemd/system
 systemctl start solar-log
 systemctl enable solar-log.service
