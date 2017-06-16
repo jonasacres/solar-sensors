@@ -33,7 +33,10 @@ end
 $db_file = "solar.db"
 $db = open_db("solar.db")
 $url = IO.read("http-keystore-url").strip
-$db.execute("select time_inserted_str from solar order by time_inserted_epoch desc limit 1") { |row| $last_update = row[:time_inserted_str] }
+begin
+  $db.execute("select time_inserted_str from solar order by time_inserted_epoch desc limit 1") { |row| $last_update = row[:time_inserted_str] }
+rescue
+end
 ws = WebSocket::Client::Simple.connect $url
 
 puts "Starting at #{Time.now.strftime("%Y-%m-%d %H:%M:%S %Z")}"
